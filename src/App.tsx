@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
 
-function App() {
+const App:React.FunctionComponent = () => {
+
   return (
     <div className="App">
       <header className="App-header">
