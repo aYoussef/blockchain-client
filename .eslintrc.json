@@ -26,13 +26,21 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "import/prefer-default-export": "off",
     "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto",
-        "singleQuote": true
+        "singleQuote": true,
+        "trailingComma" : "none"
       }
     ],
-    "@typescript-eslint/no-explicit-any": ["warn"]
+    "@typescript-eslint/no-explicit-any": ["warn"],
+    "react/prop-types": [
+      2, 
+      { 
+        "ignore": ["children"] 
+      }
+    ]
   }
 }

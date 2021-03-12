@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import logo from './logo.svg';
+import { useAppDispatch } from './state/hooks';
+import { getTransactions } from './state/slices/transactionsSlice';
 
 const App: React.FunctionComponent = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch]);
   return (
     <div className="App">
       <header className="App-header">
