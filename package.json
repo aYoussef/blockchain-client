@@ -23,7 +23,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:nowatch": "react-scripts test --watchAll=false"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
