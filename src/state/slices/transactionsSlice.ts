@@ -12,8 +12,8 @@ export const transactionsSlice = createSlice({
       return { ...state, ...transactions };
     },
     // This action will be handled by Saga
-    getTransactions: () => {},
-  },
+    getTransactions: () => {}
+  }
 });
 
 export const { setTransactions, getTransactions } = transactionsSlice.actions;
