@@ -6,14 +6,14 @@ import transactions from './slices/transactionsSlice';
 // Getting the default middleware without thunk since
 // we/ll be using Saga's middleware
 const defaultMiddleWare = getDefaultMiddleware({
-  thunk: false,
+  thunk: false
 });
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: { transactions },
-  middleware: [...defaultMiddleWare, sagaMiddleware],
+  middleware: [...defaultMiddleWare, sagaMiddleware]
 });
 
 sagaMiddleware.run(rootSaga);

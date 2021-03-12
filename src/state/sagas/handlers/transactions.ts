@@ -9,7 +9,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import * as transactionsApi from '../../../api/transactionsApi';
 import {
   getTransactions,
-  setTransactions,
+  setTransactions
 } from '../../slices/transactionsSlice';
 
 function* loadTransactionsHandler() {
@@ -17,7 +17,7 @@ function* loadTransactionsHandler() {
     const [btcTxs, ethTxs, cusTxs] = yield all([
       call(transactionsApi.getBtcNonCustodialTransactions),
       call(transactionsApi.getEthNonCustodialTransactions),
-      call(transactionsApi.getCustodialTransactions),
+      call(transactionsApi.getCustodialTransactions)
     ]);
     yield put(setTransactions([...btcTxs, ...ethTxs, ...cusTxs]));
   } catch (e) {

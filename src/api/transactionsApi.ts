@@ -1,7 +1,7 @@
 import {
   BtcNonCustodial,
   CustodialTransaction,
-  EthNonCustodial,
+  EthNonCustodial
 } from '../types';
 import { backendGet } from './helper';
 
