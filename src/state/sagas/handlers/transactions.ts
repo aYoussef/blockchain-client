@@ -9,7 +9,8 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import * as transactionsApi from '../../../api/transactionsApi';
 import {
   getTransactions,
-  setTransactions
+  setTransactions,
+  setTransactionsError
 } from '../../slices/transactionsSlice';
 
 function* loadTransactionsHandler() {
@@ -21,7 +22,7 @@ function* loadTransactionsHandler() {
     ]);
     yield put(setTransactions([...btcTxs, ...ethTxs, ...cusTxs]));
   } catch (e) {
-    yield put({ type: 'USER_FETCH_FAILED', message: e.message });
+    yield put(setTransactionsError(e.message));
   }
 }
 

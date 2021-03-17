@@ -6,8 +6,9 @@
  * */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { all } from 'redux-saga/effects';
+import { watchGetPricesSaga } from './handlers/prices';
 import { watchGetTransactionsSaga } from './handlers/transactions';
 
 export default function* rootSaga() {
-  yield all([watchGetTransactionsSaga()]);
+  yield all([watchGetTransactionsSaga(), watchGetPricesSaga()]);
 }

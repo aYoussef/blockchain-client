@@ -1,6 +1,8 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/rootSaga';
+import filters from './slices/filtersSlice';
+import prices from './slices/pricesSlice';
 import transactions from './slices/transactionsSlice';
 
 // Getting the default middleware without thunk since
@@ -12,7 +14,7 @@ const defaultMiddleWare = getDefaultMiddleware({
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
-  reducer: { transactions },
+  reducer: { transactions, prices, filters },
   middleware: [...defaultMiddleWare, sagaMiddleware]
 });
 

@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { Provider } from 'react-redux';
-import App from './App';
-import { store } from './state/store';
+import { store } from '../../state/store';
+import { App } from './App';
 
 const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
 
@@ -12,6 +12,6 @@ test('renders learn react link', () => {
       <App />
     </Wrapper>
   );
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText(/Status/i);
   expect(linkElement).toBeInTheDocument();
 });

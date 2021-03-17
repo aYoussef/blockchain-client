@@ -1,13 +1,13 @@
-export interface BtcNonCustodial {
+export interface IBtcNonCustodial {
   amount: number;
-  blockHeight: number;
+  blockHeight: string;
   coin: string;
   description: string;
   doubleSpend: boolean;
   from: string;
   fromWatchOnly: boolean;
   hash: string;
-  insertedAt: string;
+  insertedAt: number;
   state: string;
   to: string;
   toAddress: string;
@@ -16,33 +16,43 @@ export interface BtcNonCustodial {
   type: string;
 }
 
-export interface EthNonCustodial {
-  amount: BigInt;
+export interface IEthNonCustodial {
+  amount: number;
   blockHeight: string;
   data: string;
   description: string;
   erc20: boolean;
   from: string;
   hash: string;
-  insertedAt: string;
+  insertedAt: number;
   state: string;
   to: string;
   exFee: string;
   type: string;
 }
 
-export interface CustodialTransaction {
+export interface ICustodialTransaction {
   createdAt: string;
   id: string;
   pair: string;
   state: string;
-  fiatValue: string;
+  fiatValue: number;
   fiatCurrency: string;
   type: string;
   version: string;
 }
 
-export interface Price {
+export interface IPrice {
   btc: number;
   eth: number;
+}
+
+export interface ITransaction
+  extends ICustodialTransaction,
+    IEthNonCustodial,
+    IBtcNonCustodial {}
+
+export interface IFilters {
+  currency: string;
+  status: string;
 }

@@ -37,11 +37,6 @@
       }
     ],
     "@typescript-eslint/no-explicit-any": ["warn"],
-    "react/prop-types": [
-      2, 
-      { 
-        "ignore": ["children"] 
-      }
-    ]
+    "react/prop-types": "off"
   }
 }

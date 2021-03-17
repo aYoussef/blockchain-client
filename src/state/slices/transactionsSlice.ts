@@ -1,21 +1,36 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BtcNonCustodial } from '../../types';
+import { ITransaction } from '../../types';
+import { BackendResponse } from '../types';
+import {
+  getDefaultState,
+  handleError,
+  handleLoading,
+  handleSuccess
+} from './helpers';
 
-const initialState: BtcNonCustodial[] = [];
+const initialState: BackendResponse<ITransaction[]> = getDefaultState();
 
 export const transactionsSlice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-    setTransactions: (state, action: PayloadAction<BtcNonCustodial[]>) => {
-      const transactions = action.payload;
-      return { ...state, ...transactions };
+    getTransactions: () => {
+      return handleLoading();
     },
-    // This action will be handled by Saga
-    getTransactions: () => {}
+    setTransactions: (_, action: PayloadAction<ITransaction[]>) => {
+      const transactions = action.payload;
+      return handleSuccess(transactions);
+    },
+    setTransactionsError: (_, action: PayloadAction<string>) => {
+      return handleError(action.payload);
+    }
   }
 });
 
-export const { setTransactions, getTransactions } = transactionsSlice.actions;
+export const {
+  setTransactions,
+  getTransactions,
+  setTransactionsError
+} = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;

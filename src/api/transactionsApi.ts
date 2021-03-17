@@ -1,22 +1,24 @@
 import {
-  BtcNonCustodial,
-  CustodialTransaction,
-  EthNonCustodial
+  IBtcNonCustodial,
+  ICustodialTransaction,
+  IEthNonCustodial
 } from '../types';
 import { backendGet } from './helper';
 
 export const getBtcNonCustodialTransactions = (): Promise<
-  BtcNonCustodial[]
+  IBtcNonCustodial[]
 > => {
   return backendGet('/btc-txs');
 };
 
 export const getEthNonCustodialTransactions = (): Promise<
-  EthNonCustodial[]
+  IEthNonCustodial[]
 > => {
   return backendGet('/eth-txs');
 };
 
-export const getCustodialTransactions = (): Promise<CustodialTransaction[]> => {
+export const getCustodialTransactions = (): Promise<
+  ICustodialTransaction[]
+> => {
   return backendGet('/custodial-txs');
 };
