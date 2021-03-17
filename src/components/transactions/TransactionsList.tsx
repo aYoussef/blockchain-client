@@ -31,7 +31,6 @@ export const TransactionsList: React.FunctionComponent<Props> = (props) => {
   );
 
   const filteredTransactions = useMemo(() => {
-    console.log(filters);
     if (!transactions) {
       return [];
     }

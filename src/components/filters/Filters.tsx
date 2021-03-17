@@ -5,7 +5,7 @@ import { CurrencyFilter } from './CurrencyFilter';
 import { StyledFiltersWrapper } from './Filters.style';
 import { StatusFilter } from './StatusFilter';
 
-export const Filters: React.FunctionComponent = (props) => {
+export const Filters: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
   const changeFilters = (filter) => {
     dispatch(setFilters(filter));
