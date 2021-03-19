@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAppDispatch } from '../../state/hooks';
-import { setFilters } from '../../state/slices/filtersSlice';
+import { useAppDispatch } from '../../../state/hooks';
+import { setFilters } from '../../../state/slices/transactions/filtersSlice';
 import { CurrencyFilter } from './CurrencyFilter';
 import { StyledFiltersWrapper } from './Filters.style';
 import { StatusFilter } from './StatusFilter';

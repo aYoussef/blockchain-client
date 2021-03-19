@@ -5,7 +5,7 @@ import {
   IEthNonCustodial,
   IFilters,
   ITransaction
-} from '../types';
+} from '../../types';
 
 const WEI_PER_ETH = 1000000000000000000;
 const SAT_PER_BTC = 100000000;
@@ -25,13 +25,25 @@ export const instanceOfCustodial = (
 };
 
 export const sortTransactions = (
-  transactions: ITransaction[]
+  transactions: ITransaction[],
+  sortType: string
 ): ITransaction[] => {
-  return [...transactions].sort((a: ITransaction, b: ITransaction) => {
-    const aDate = new Date(a.createdAt || a.insertedAt * 1000);
-    const bDate = new Date(b.createdAt || b.insertedAt * 1000);
-    return bDate.getTime() - aDate.getTime();
-  });
+  switch (sortType) {
+    case 'date-desc':
+      return [...transactions].sort((a: ITransaction, b: ITransaction) => {
+        const aDate = new Date(a.createdAt || a.insertedAt * 1000);
+        const bDate = new Date(b.createdAt || b.insertedAt * 1000);
+        return bDate.getTime() - aDate.getTime();
+      });
+    case 'date-asc':
+      return [...transactions].sort((a: ITransaction, b: ITransaction) => {
+        const aDate = new Date(a.createdAt || a.insertedAt * 1000);
+        const bDate = new Date(b.createdAt || b.insertedAt * 1000);
+        return aDate.getTime() - bDate.getTime();
+      });
+    default:
+      return transactions;
+  }
 };
 
 export const formatEth = (amount: number): number => {

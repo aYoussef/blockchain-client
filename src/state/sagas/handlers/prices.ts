@@ -7,7 +7,11 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as pricesApi from '../../../api/pricesApi';
-import { getPrices, setPrices, setPricesError } from '../../slices/pricesSlice';
+import {
+  getPrices,
+  setPrices,
+  setPricesError
+} from '../../slices/prices/pricesSlice';
 
 function* loadPricesHandler() {
   try {

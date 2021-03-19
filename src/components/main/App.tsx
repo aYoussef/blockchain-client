@@ -1,16 +1,30 @@
 import { Spinner } from '@blueprintjs/core';
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
-import { getPrices } from '../../state/slices/pricesSlice';
-import { getTransactions } from '../../state/slices/transactionsSlice';
+import { getHistoricalPrice } from '../../state/slices/historicalPrices/historicalPricesSlice';
+import { getPrices } from '../../state/slices/prices/pricesSlice';
+import { getTransactions } from '../../state/slices/transactions/transactionsSlice';
 import { RootState } from '../../state/store';
-import { Filters } from '../filters/Filters';
+import { ICustodialTransaction } from '../../types';
+import {
+  convertToBackendTime,
+  floorMinutesToQuarterHour
+} from '../../utils/dateUtil';
+import { Filters } from '../transactions/filters/Filters';
+import { instanceOfCustodial } from '../transactions/helper';
+import { Sort } from '../transactions/sort/Sort';
 import { TransactionsList } from '../transactions/TransactionsList';
-import { StyledAppContainer } from './App.style';
+import {
+  StyledAppContainer,
+  StyledHeader,
+  StyledSortMenu,
+  StyledTransactionsList
+} from './App.style';
 
 export const App: React.FunctionComponent = () => {
   const dispatch = useAppDispatch();
   const prices = useAppSelector((state: RootState) => state.prices);
+  const transactions = useAppSelector((state: RootState) => state.transactions);
 
   useEffect(() => {
     dispatch(getPrices());
@@ -31,13 +45,41 @@ export const App: React.FunctionComponent = () => {
     }
   }, [dispatch, prices.data]);
 
-  const transactions = useAppSelector((state: RootState) => state.transactions);
+  useEffect(() => {
+    if (transactions.data) {
+      const currencyAndTimes = transactions.data.reduce(
+        (acc: Set<string>, transaction: ICustodialTransaction) => {
+          if (instanceOfCustodial(transaction)) {
+            const currency = transaction.pair.includes('BTC') ? 'BTC' : 'ETH';
+            acc.add(
+              `${currency}-${convertToBackendTime(
+                floorMinutesToQuarterHour(new Date(transaction.createdAt))
+              )}`
+            );
+          }
+          return acc;
+        },
+        new Set()
+      );
+      currencyAndTimes.forEach((element: string) => {
+        dispatch(getHistoricalPrice(element));
+      });
+    }
+  }, [dispatch, transactions]);
+
   return transactions.loading ? (
     <Spinner />
   ) : (
     <StyledAppContainer>
-      <Filters />
-      <TransactionsList transactions={transactions.data} />
+      <StyledHeader>
+        <Filters />
+        <StyledSortMenu>
+          <Sort />
+        </StyledSortMenu>
+      </StyledHeader>
+      <StyledTransactionsList>
+        <TransactionsList transactions={transactions.data} />
+      </StyledTransactionsList>
     </StyledAppContainer>
   );
 };

@@ -11,7 +11,7 @@ import {
   getTransactions,
   setTransactions,
   setTransactionsError
-} from '../../slices/transactionsSlice';
+} from '../../slices/transactions/transactionsSlice';
 
 function* loadTransactionsHandler() {
   try {

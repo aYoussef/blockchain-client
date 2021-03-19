@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IFilters } from '../../types';
+import { IFilters } from '../../../types';
 
 const initialState: IFilters = {
   currency: 'all',

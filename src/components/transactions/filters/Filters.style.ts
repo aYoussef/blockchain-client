@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Spacing from '../../styles/Spacing';
+import Spacing from '../../../styles/Spacing';
 
 export const StyledFiltersWrapper = styled.div`
   margin: ${Spacing[3]};

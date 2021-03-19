@@ -1,4 +1,4 @@
-import { Button, Label, MenuItem } from '@blueprintjs/core';
+import { Button, FormGroup, MenuItem } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 import React, { useState } from 'react';
 import { StyledFilter } from './Filters.style';
@@ -31,8 +31,7 @@ export const CurrencyFilter: React.FunctionComponent<Props> = (props) => {
   };
   return (
     <StyledFilter>
-      <Label>
-        Currency filter
+      <FormGroup label="Currency filter" inline>
         <Select
           filterable={false}
           onItemSelect={handleClick}
@@ -41,7 +40,7 @@ export const CurrencyFilter: React.FunctionComponent<Props> = (props) => {
         >
           <Button text={selected.label} icon="double-caret-vertical" />
         </Select>
-      </Label>
+      </FormGroup>
     </StyledFilter>
   );
 };

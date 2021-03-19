@@ -38,7 +38,7 @@ export const StyledDetails = styled.div`
 export const StyledAmounts = styled.div`
   font-weight: bold;
   width: 90px;
-  text-align: left;
+  text-align: right;
 `;
 
 export const StyledTitle = styled.div`
@@ -49,10 +49,43 @@ export const StyledTitle = styled.div`
 
 export const StyledDescription = styled.div`
   color: ${Colors.descriptionShade1};
+  @media screen and (max-width: 850px) {
+    display: none !important;
+  }
 `;
 
 export const StyledAmount = styled.div`
   margin-bottom: ${Spacing[2]};
 `;
 
-export const StyledFiat = styled.div``;
+export const StyledDetailsWrapper = styled.div`
+  padding: ${Spacing[4]};
+  text-align: center;
+`;
+
+export const StyledTransactionIcon = styled.div`
+  margin: ${Spacing[4]} auto ${Spacing[3]};
+`;
+
+export const StyledDetailsAmounts = styled.div`
+  font-weight: bold;
+  margin-bottom: ${Spacing[4]};
+  div {
+    margin: ${Spacing[2]};
+  }
+`;
+
+export const DetailsRowWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: ${Spacing[1]};
+`;
+
+export const DetailsRowTitle = styled.div`
+  font-weight: bold;
+`;
+
+export const DetailsRowValue = styled.div`
+  margin-left: auto;
+  word-break: break-word;
+`;

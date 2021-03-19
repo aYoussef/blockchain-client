@@ -8,7 +8,6 @@ import {
   StyledColumn,
   StyledDescription,
   StyledDetails,
-  StyledFiat,
   StyledIcon,
   StyledStatus,
   StyledTitle,
@@ -25,6 +24,7 @@ interface Props {
   icon: IconName;
   to?: string;
   from?: string;
+  onClick: () => void;
 }
 
 export const TransactionCard: React.FunctionComponent<Props> = (props) => {
@@ -37,11 +37,12 @@ export const TransactionCard: React.FunctionComponent<Props> = (props) => {
     fiatValue,
     icon,
     to,
-    from
+    from,
+    onClick
   } = props;
   return (
     <StyledCard>
-      <Card elevation={2}>
+      <Card elevation={2} interactive onClick={onClick}>
         <StyledTransactionWrapper>
           <StyledColumn>
             {moment(date).format('MMM Do YY')}
@@ -58,7 +59,7 @@ export const TransactionCard: React.FunctionComponent<Props> = (props) => {
           </StyledDetails>
           <StyledAmounts>
             <StyledAmount>{amount}</StyledAmount>
-            <StyledFiat>{fiatValue}</StyledFiat>
+            <div>{fiatValue}</div>
           </StyledAmounts>
         </StyledTransactionWrapper>
       </Card>

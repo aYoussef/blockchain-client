@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITransaction } from '../../types';
-import { BackendResponse } from '../types';
+import { ITransaction } from '../../../types';
+import { BackendResponse } from '../../types';
 import {
   getDefaultState,
   handleError,
   handleLoading,
   handleSuccess
-} from './helpers';
+} from '../helpers';
 
 const initialState: BackendResponse<ITransaction[]> = getDefaultState();
 

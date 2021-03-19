@@ -1,3 +1,6 @@
+import { IconName } from '@blueprintjs/icons';
+import { BackendResponse } from '../state/types';
+
 export interface IBtcNonCustodial {
   amount: number;
   blockHeight: string;
@@ -55,4 +58,26 @@ export interface ITransaction
 export interface IFilters {
   currency: string;
   status: string;
+}
+
+export interface ITransactionDetails {
+  title: string;
+  amount?: string;
+  fiatAmount: string;
+  icon: IconName;
+  date: Date;
+  status: string;
+  from?: string;
+  to?: string;
+  details?: string;
+}
+
+export interface IHistoricalPrices {
+  [id: string]: BackendResponse<number>;
+}
+
+export interface IHistoricalPrice {
+  timestamp: number;
+  price: number;
+  volume24h: number;
 }
