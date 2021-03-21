@@ -3,7 +3,8 @@ import { takeLatest } from 'redux-saga/effects';
 import * as transactionsApi from '../../../api/transactionsApi';
 import {
   getTransactions,
-  setTransactions
+  setTransactions,
+  setTransactionsError
 } from '../../slices/transactions/transactionsSlice';
 import {
   loadTransactionsHandler,
@@ -57,21 +58,21 @@ describe('Saga transactions', () => {
     );
   });
 
-  // test('load transactions error', async () => {
-  //   const error = 'error fetching transactions';
-  //   transactionsApi.getBtcNonCustodialTransactions = jest.fn(() =>
-  //     Promise.reject({ message: error })
-  //   );
-  //   const dispatched = [];
+  test('load transactions error', async () => {
+    const error = 'error fetching transactions';
+    transactionsApi.getBtcNonCustodialTransactions = jest.fn(() =>
+      Promise.reject({ message: error })
+    );
+    const dispatched = [];
 
-  //   await runSaga(
-  //     {
-  //       dispatch: (action: never) => dispatched.push(action),
-  //       getState: () => ({ state: 'test' })
-  //     },
-  //     loadTransactionsHandler
-  //   ).toPromise();
-  //   expect(dispatched).toHaveLength(1);
-  //   expect(dispatched[0]).toEqual(setTransactionsError(error));
-  // });
+    await runSaga(
+      {
+        dispatch: (action: never) => dispatched.push(action),
+        getState: () => ({ state: 'test' })
+      },
+      loadTransactionsHandler
+    ).toPromise();
+    expect(dispatched).toHaveLength(1);
+    expect(dispatched[0]).toEqual(setTransactionsError(error));
+  });
 });

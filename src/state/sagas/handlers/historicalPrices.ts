@@ -13,7 +13,7 @@ import {
   setHistoricalPriceError
 } from '../../slices/historicalPrices/historicalPricesSlice';
 
-function* loadHistoricalPricesHandler(action) {
+export function* loadHistoricalPricesHandler(action) {
   const [currency, timestamp] = action.payload.split('-');
   try {
     const result = yield call(

@@ -13,7 +13,7 @@ import {
   setPricesError
 } from '../../slices/prices/pricesSlice';
 
-function* loadPricesHandler() {
+export function* loadPricesHandler() {
   try {
     const prices = yield call(pricesApi.fetchPrices);
     yield put(setPrices(prices));
