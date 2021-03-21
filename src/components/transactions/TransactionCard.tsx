@@ -21,7 +21,7 @@ interface Props {
   details?: string;
   state: string;
   fiatValue: string;
-  icon: IconName;
+  icon: string;
   to?: string;
   from?: string;
   onClick: () => void;
@@ -49,7 +49,7 @@ export const TransactionCard: React.FunctionComponent<Props> = (props) => {
             <StyledStatus>{state}</StyledStatus>
           </StyledColumn>
           <StyledIcon>
-            <Icon icon={icon} iconSize={25} />
+            <Icon icon={icon as IconName} iconSize={25} />
           </StyledIcon>
           <StyledDetails>
             <StyledTitle>{title}</StyledTitle>

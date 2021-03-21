@@ -28,8 +28,12 @@ export const CustodialTransaction: React.FunctionComponent<Props> = (props) => {
     const timestamp = convertToBackendTime(
       floorMinutesToQuarterHour(new Date(transaction.createdAt))
     );
-    const price = historicalPrices[`${currency}-${timestamp}`].data;
-    return (transaction.fiatValue / price).toFixed(8);
+    const key = `${currency}-${timestamp}`;
+    const price = historicalPrices[key]?.data;
+    if (!price) {
+      return undefined;
+    }
+    return (Number(transaction.fiatValue) / price).toFixed(8);
   };
 
   const transactionDetails: ITransactionDetails = {

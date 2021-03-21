@@ -22,6 +22,7 @@ import {
   sortTransactions
 } from './helper';
 import { TransactionDetails } from './TransactionDetails';
+import { TransactionsListWrapper } from './Transactions.style';
 
 interface Props {
   transactions: ITransaction[];
@@ -98,7 +99,7 @@ export const TransactionsList: React.FunctionComponent<Props> = (props) => {
   };
 
   return (
-    <div style={{ height: '100%' }}>
+    <TransactionsListWrapper>
       {selectedTransaction && (
         <Dialog
           style={{ width: '700px' }}
@@ -124,6 +125,6 @@ export const TransactionsList: React.FunctionComponent<Props> = (props) => {
           }}
         </AutoSizer>
       )}
-    </div>
+    </TransactionsListWrapper>
   );
 };

@@ -6,6 +6,10 @@ export const StyledCard = styled.div`
   margin: 10px;
 `;
 
+export const TransactionsListWrapper = styled.div`
+  height: 100%;
+`;
+
 export const StyledTransactionWrapper = styled.div`
   display: flex;
   flex-direction: row;

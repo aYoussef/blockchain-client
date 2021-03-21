@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { StyledFilter } from './Filters.style';
 
 const items = [
-  { id: 'all', label: 'All transaction' },
-  { id: 'pending', label: 'Pending transaction' },
-  { id: 'done', label: 'Done transaction' }
+  { id: 'all', label: 'All transactions' },
+  { id: 'pending', label: 'Pending transactions' },
+  { id: 'done', label: 'Done transactions' }
 ];
 
 interface Props {

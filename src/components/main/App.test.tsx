@@ -1,17 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { Provider } from 'react-redux';
-import { store } from '../../state/store';
+import { ReduxTestProvider } from '../../testUtils/helpers';
 import { App } from './App';
 
-const Wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
+describe('App', () => {
+  beforeEach(() => {
+    render(
+      <ReduxTestProvider>
+        <App />
+      </ReduxTestProvider>
+    );
+  });
 
-test('renders learn react link', () => {
-  render(
-    <Wrapper>
-      <App />
-    </Wrapper>
-  );
-  const linkElement = screen.getByText(/Status/i);
-  expect(linkElement).toBeInTheDocument();
+  test('renders filters', () => {
+    expect(screen.getByText(/Status filter/i)).toBeInTheDocument();
+    expect(screen.getByText(/Currency filter/i)).toBeInTheDocument();
+  });
+
+  test('renders sort', () => {
+    expect(screen.getByText(/Sort by date/i)).toBeInTheDocument();
+  });
 });

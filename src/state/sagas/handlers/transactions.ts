@@ -13,7 +13,7 @@ import {
   setTransactionsError
 } from '../../slices/transactions/transactionsSlice';
 
-function* loadTransactionsHandler() {
+export function* loadTransactionsHandler() {
   try {
     const [btcTxs, ethTxs, cusTxs] = yield all([
       call(transactionsApi.getBtcNonCustodialTransactions),

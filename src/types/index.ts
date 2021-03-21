@@ -1,11 +1,10 @@
-import { IconName } from '@blueprintjs/icons';
 import { BackendResponse } from '../state/types';
 
 export interface IBtcNonCustodial {
   amount: number;
   blockHeight: string;
   coin: string;
-  description: string;
+  description?: string;
   doubleSpend: boolean;
   from: string;
   fromWatchOnly: boolean;
@@ -22,15 +21,15 @@ export interface IBtcNonCustodial {
 export interface IEthNonCustodial {
   amount: number;
   blockHeight: string;
-  data: string;
-  description: string;
+  data?: string;
+  description?: string;
   erc20: boolean;
   from: string;
   hash: string;
   insertedAt: number;
   state: string;
   to: string;
-  exFee: string;
+  txFee: number;
   type: string;
 }
 
@@ -39,7 +38,7 @@ export interface ICustodialTransaction {
   id: string;
   pair: string;
   state: string;
-  fiatValue: number;
+  fiatValue: string;
   fiatCurrency: string;
   type: string;
   version: string;
@@ -64,7 +63,7 @@ export interface ITransactionDetails {
   title: string;
   amount?: string;
   fiatAmount: string;
-  icon: IconName;
+  icon: string;
   date: Date;
   status: string;
   from?: string;

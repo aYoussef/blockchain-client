@@ -1,4 +1,4 @@
-import { Divider, Icon } from '@blueprintjs/core';
+import { Divider, Icon, IconName } from '@blueprintjs/core';
 import moment from 'moment';
 import React from 'react';
 import { ITransactionDetails } from '../../types';
@@ -17,7 +17,7 @@ export const TransactionDetails: React.FunctionComponent<Props> = (props) => {
   return (
     <StyledDetailsWrapper>
       <StyledTransactionIcon>
-        <Icon icon={transactionDetails.icon} iconSize={60} />
+        <Icon icon={transactionDetails.icon as IconName} iconSize={60} />
       </StyledTransactionIcon>
       <StyledDetailsAmounts>
         <div>{transactionDetails.amount}</div>

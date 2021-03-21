@@ -5,8 +5,8 @@ import { StyledFilter } from './Filters.style';
 
 const items = [
   { id: 'all', label: 'All Currencies' },
-  { id: 'btc', label: 'BTC transaction' },
-  { id: 'eth', label: 'ETH transaction' }
+  { id: 'btc', label: 'BTC' },
+  { id: 'eth', label: 'ETH' }
 ];
 
 interface Props {
