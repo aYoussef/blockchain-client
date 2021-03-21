@@ -25,6 +25,7 @@
       }
     }
   ],
+  "ignorePatterns": ["*.test.ts"],
   "rules": {
     "object-curly-spacing": ["error", "always"],
     "import/prefer-default-export": "off",
