@@ -26,6 +26,9 @@ export const App: React.FunctionComponent = () => {
   const prices = useAppSelector((state: RootState) => state.prices);
   const transactions = useAppSelector((state: RootState) => state.transactions);
 
+  // Loading the app prices, this should have been called
+  // right when the app loads, and should be called periodically
+  // to update the price in the redux store
   useEffect(() => {
     dispatch(getPrices());
   }, [dispatch]);
@@ -45,12 +48,18 @@ export const App: React.FunctionComponent = () => {
     }
   }, [dispatch, prices.data]);
 
+  // Get the historical prices for the custodial transactions
   useEffect(() => {
     if (transactions.data) {
+      // Grouping the transactions timestamps into 15 minutes groups.
+      // This will limit the number of backend calls, also the backend
+      // returns the same price for a period of 15 minutes
       const currencyAndTimes = transactions.data.reduce(
         (acc: Set<string>, transaction: ICustodialTransaction) => {
           if (instanceOfCustodial(transaction)) {
             const currency = transaction.pair.includes('BTC') ? 'BTC' : 'ETH';
+            // Creating a set of currency-timestamp so we can fetch the
+            // price for this particular currency for this particular timestamp
             acc.add(
               `${currency}-${convertToBackendTime(
                 floorMinutesToQuarterHour(new Date(transaction.createdAt))
@@ -62,6 +71,8 @@ export const App: React.FunctionComponent = () => {
         new Set()
       );
       currencyAndTimes.forEach((element: string) => {
+        // For each currency-timestamp we should fetch the historical price.
+        // A separate action/backend call will be made for that
         dispatch(getHistoricalPrice(element));
       });
     }

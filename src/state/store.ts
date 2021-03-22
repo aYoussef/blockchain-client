@@ -8,7 +8,7 @@ import sort from './slices/transactions/sortSlice';
 import transactions from './slices/transactions/transactionsSlice';
 
 // Getting the default middleware without thunk since
-// we/ll be using Saga's middleware
+// we'll be using Saga's middleware
 const defaultMiddleWare = getDefaultMiddleware({
   thunk: false
 });

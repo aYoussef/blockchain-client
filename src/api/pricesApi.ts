@@ -5,6 +5,8 @@ export const fetchPrices = (): Promise<IPrice> => {
   return backendGet('/prices');
 };
 
+// Based on timestamp and currency this method will fetch
+// the historical price for the passed in currency
 export const fetchHistoricalPrice = (
   timestamp: number,
   currency: string
